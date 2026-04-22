@@ -1,0 +1,50 @@
+---
+alwaysApply: true
+---
+
+# shadcn/ui over raw HTML
+
+This project uses [shadcn/ui](https://ui.shadcn.com/) (`components.json`, `@/components/ui`). When building or editing UI in TSX, use the installed shadcn component (or add one) instead of bare HTML elements that shadcn wraps.
+
+## Mappings (examples)
+
+| Prefer                                       | Instead of                                                                                                 |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `Button` from `@/components/ui/button`       | `<button>` (unless a third-party API truly requires a native button ref with no wrapper—then document why) |
+| `Input` from `@/components/ui/input`         | `<input>` for text-like fields                                                                             |
+| `Label` from `@/components/ui/label`         | `<label>` paired with form controls                                                                        |
+| `Checkbox`, `Select`, `Dialog`, `Tabs`, etc. | Native equivalents once added via CLI                                                                      |
+
+Semantic elements without a shadcn twin stay as-is: `<main>`, `<nav>`, `<article>`, `<form>` (compose inside with shadcn `Input`, `Button`, `Label`, …).
+
+## Adding missing primitives
+
+If the needed component is not in `components/ui/`, add it with the project’s shadcn CLI (see [components](https://ui.shadcn.com/docs/components)), then import from `@/components/ui/<name>`.
+
+## Examples
+
+```tsx
+// ❌ BAD — one-off styled native control
+<button className="rounded-md bg-primary px-4 py-2" onClick={...}>
+  Save
+</button>
+
+// ✅ GOOD — shared variant + a11y patterns from shadcn
+import { Button } from "@/components/ui/button";
+
+<Button type="button" onClick={...}>
+  Save
+</Button>
+```
+
+```tsx
+// ❌ BAD
+<input className="border rounded px-2" {...props} />;
+
+// ✅ GOOD
+import { Input } from "@/components/ui/input";
+
+<Input {...props} />;
+```
+
+Match existing imports and naming; extend `@/components/ui` rather than duplicating styles on raw tags.
