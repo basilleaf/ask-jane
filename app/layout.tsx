@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import {
+  EB_Garamond,
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +32,7 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Ask Jane — Jane Austen concordance",
+  title: "Ask Jane — Semantic Search Across Jane Austen's Novels",
   description: "Search Jane Austen's novels by theme, feeling, or question.",
 };
 
