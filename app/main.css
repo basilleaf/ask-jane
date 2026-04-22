@@ -1,0 +1,271 @@
+.concordance {
+  --concordance-espresso: #1a1410;
+  --concordance-cream: #f5f0e8;
+  --concordance-amber: #d4a96a;
+  --concordance-amber-muted: #b8956a;
+  --concordance-mauve: #8a7560;
+  --concordance-stone: #c8b89a;
+  --concordance-placeholder: #bbb5aa;
+  --concordance-error: #a05050;
+  --concordance-white: #ffffff;
+  --concordance-espresso-hover: #2d241c;
+  --concordance-disabled: #888888;
+
+  min-height: 100vh;
+  background: var(--concordance-cream);
+  padding: 0;
+}
+
+.concordance * {
+  box-sizing: border-box;
+}
+
+.concordance .header {
+  background: var(--concordance-espresso);
+  padding: 48px 32px 40px;
+  text-align: center;
+}
+
+.concordance .header-eyebrow {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--concordance-amber-muted);
+  margin-bottom: 16px;
+}
+
+.concordance .header-title {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 400;
+  color: var(--concordance-cream);
+  margin: 0 0 8px;
+  line-height: 1.1;
+}
+
+.concordance .header-title em {
+  font-style: italic;
+  color: var(--concordance-amber);
+}
+
+.concordance .header-sub {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--concordance-mauve);
+  margin-top: 12px;
+}
+
+.concordance .search-area {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+
+.concordance .search-label {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--concordance-mauve);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.concordance .search-row {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--concordance-espresso);
+  background: var(--concordance-white);
+}
+
+.concordance .search-input {
+  flex: 1;
+  padding: 16px 20px;
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--concordance-espresso);
+}
+
+.concordance .search-input::placeholder {
+  color: var(--concordance-placeholder);
+  font-style: italic;
+}
+
+.concordance .search-btn {
+  padding: 16px 28px;
+  background: var(--concordance-espresso);
+  color: var(--concordance-cream);
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.concordance .search-btn:hover:not(:disabled) {
+  background: var(--concordance-espresso-hover);
+}
+
+.concordance .search-btn:disabled {
+  background: var(--concordance-disabled);
+  cursor: not-allowed;
+}
+
+.concordance .hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.concordance .hint {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--concordance-mauve);
+  background: transparent;
+  border: 1px solid var(--concordance-stone);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.concordance .hint:hover {
+  background: var(--concordance-espresso);
+  color: var(--concordance-cream);
+  border-color: var(--concordance-espresso);
+}
+
+.concordance .results {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+.concordance .result-card {
+  border-top: 1px solid var(--concordance-stone);
+  padding: 32px 0;
+  animation: concordance-fade-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+.concordance .result-card:last-child {
+  border-bottom: 1px solid var(--concordance-stone);
+}
+
+@keyframes concordance-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.concordance .result-quote {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--concordance-espresso);
+  margin: 0 0 16px;
+  padding-left: 20px;
+  border-left: 2px solid var(--concordance-amber);
+}
+
+.concordance .result-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.concordance .result-novel {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--concordance-amber-muted);
+  font-style: normal;
+}
+
+.concordance .result-context {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 15px;
+  color: var(--concordance-mauve);
+  font-style: italic;
+}
+
+.concordance .loading-state {
+  text-align: center;
+  padding: 48px 0;
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--concordance-mauve);
+}
+
+.concordance .error-state {
+  color: var(--concordance-error);
+}
+
+.concordance .loading-dots::after {
+  content: "";
+  animation: concordance-dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes concordance-dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
+
+.concordance .empty-state {
+  text-align: center;
+  padding: 48px 0;
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--concordance-placeholder);
+}
+
+.concordance .divider {
+  width: 40px;
+  height: 1px;
+  background: var(--concordance-amber);
+  margin: 0 auto 32px;
+}
+
+.concordance .summary-block {
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--concordance-espresso);
+  margin: 0 0 0;
+  padding: 0 0 28px;
+}
+
+.concordance .summary-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--concordance-amber-muted);
+  margin-bottom: 12px;
+}
+
+.concordance .summary-text {
+  margin: 0;
+}
