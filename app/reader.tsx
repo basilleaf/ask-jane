@@ -44,6 +44,8 @@ export function Reader() {
   const [searched, setSearched] = useState(false);
   const [summary, setSummary] = useState<string | null>(null);
   const [results, setResults] = useState<Passage[]>([]);
+  const [showLoading, setShowLoading] = useState(false);
+
   const busyRef = useRef(false);
   const skipNextUrlSyncSearch = useRef(false);
 
@@ -103,6 +105,16 @@ export function Reader() {
 
     void executeSearch(q);
   }, [searchParams, executeSearch]);
+
+  useEffect(() => {
+    if (!loading) {
+      setShowLoading(false);
+      return;
+    }
+
+    const timer = setTimeout(() => setShowLoading(true), 500);
+    return () => clearTimeout(timer);
+  }, [loading]);
 
   const search = useCallback(async () => {
     const q = query.trim();
@@ -176,7 +188,7 @@ export function Reader() {
       </div>
 
       <div className="results">
-        {loading && (
+        {showLoading && (
           <div className="loading-state">
             Searching the novels
             <span className="loading-dots" />
