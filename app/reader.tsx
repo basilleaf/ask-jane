@@ -157,7 +157,7 @@ export function Reader() {
             onClick={() => void search()}
             disabled={loading || !query.trim()}
           >
-            {loading ? "Searching" : "Search"}
+            Search
           </button>
         </div>
 

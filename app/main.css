@@ -97,7 +97,7 @@
 }
 
 .reader .search-btn {
-  padding: 16px 28px;
+  padding: 16px 22px;
   background: var(--reader-espresso);
   color: var(--reader-cream);
   font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
