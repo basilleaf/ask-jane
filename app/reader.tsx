@@ -17,11 +17,15 @@ type SearchResponse = {
 };
 
 const HINTS = [
-  "money and marriage",
-  "a woman's intelligence",
   "first impressions",
   "loneliness",
   "social obligation",
+  "romantic love",
+  "friendship and loyalty",
+  "family",
+  "money and marriage",
+  "moral and ethical dilemmas",
+  "social class and class mobility",
 ];
 
 function formatContext(similarity: number) {
