@@ -5,6 +5,7 @@ import {
   integer,
   timestamp,
   index,
+  jsonb,
 } from "drizzle-orm/pg-core";
 import { vector } from "drizzle-orm/pg-core";
 
@@ -27,3 +28,11 @@ export const passages = pgTable(
     ),
   }),
 );
+
+export const searches = pgTable("searches", {
+  id: serial("id").primaryKey(),
+  query: text("query").notNull().unique(),
+  summary: text("summary").notNull(),
+  passages: jsonb("passages").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});

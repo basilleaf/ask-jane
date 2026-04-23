@@ -3,7 +3,8 @@ import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import Anthropic from "@anthropic-ai/sdk";
 import { ratelimit } from "@/lib/ratelimit";
-import { sql } from "drizzle-orm";
+import { sql, eq } from "drizzle-orm";
+import { searches } from "@/db";
 
 const db = drizzle(neon(process.env.DATABASE_URL!));
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
@@ -25,16 +26,29 @@ const embedQuery = async (text: string): Promise<number[]> => {
 };
 
 export async function POST(req: NextRequest) {
+  const { query } = await req.json();
+  if (!query?.trim()) {
+    return Response.json({ error: "Query is required" }, { status: 400 });
+  }
+
+  const cached = await db
+    .select()
+    .from(searches)
+    .where(eq(searches.query, query))
+    .limit(1);
+
+  if (cached.length > 0) {
+    return Response.json({
+      summary: cached[0].summary,
+      passages: cached[0].passages,
+    });
+  }
+
   // Rate limiting
   const ip = req.headers.get("x-forwarded-for") ?? "anonymous";
   const { success } = await ratelimit.limit(ip);
   if (!success) {
     return Response.json({ error: "Too many requests" }, { status: 429 });
-  }
-
-  const { query } = await req.json();
-  if (!query?.trim()) {
-    return Response.json({ error: "Query is required" }, { status: 400 });
   }
 
   // 1. Embed the query
@@ -74,6 +88,8 @@ export async function POST(req: NextRequest) {
 
   const summary =
     message.content[0].type === "text" ? message.content[0].text : "";
+
+  await db.insert(searches).values({ query, summary, passages: foundPassages });
 
   return Response.json({ summary, passages: foundPassages });
 }
