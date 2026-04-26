@@ -8,7 +8,12 @@ Ask Jane — Semantic Search Across Jane Austen's Novels
 - Rate limiting with Upstash Redis to protect open endpoints
 - Built with Next.js App Router, TypeScript, Shadcn UI, and Tailwind CSS, deployed to Vercel
 
+https://ask-jane.vercel.app/
 
+<img width="3420" height="2074" alt="image" src="https://github.com/user-attachments/assets/5b1161ad-082b-4f64-94f4-0052c42af609" />
+
+
+----
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
