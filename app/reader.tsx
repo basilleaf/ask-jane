@@ -18,7 +18,6 @@ type SearchResponse = {
 
 const HINTS = [
   "first impressions",
-  "loneliness",
   "social obligation",
   "romantic love",
   "friendship and loyalty",
